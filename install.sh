@@ -36,6 +36,7 @@ git clone https://github.com/zsh-users/zsh-autosuggestions.git \
 
 echo "==> Symlinking dotfiles..."
 ln -sf ~/dotfiles/.zshrc ~/.zshrc
+mkdir -p ~/.config
 ln -sf ~/dotfiles/nvim ~/.config/nvim
 mkdir -p ~/.local/bin
 ln -sf $(which fdfind) ~/.local/bin/fd
