@@ -1,5 +1,11 @@
 #!/bin/bash
+# Ubuntu/Debian (WSL) installer for these dotfiles.
+# (install-arch.sh is the Arch/EndeavourOS version.)
 set -e
+
+# Resolve the dotfiles repo directory (where this script lives), so symlinks
+# work no matter where the repo is cloned.
+DOTS="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 echo "==> Installing dependencies..."
 sudo apt update && sudo apt install -y \
@@ -9,6 +15,7 @@ sudo apt update && sudo apt install -y \
 echo "==> Installing Neovim..."
 curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
 tar -xzf nvim-linux-x86_64.tar.gz
+sudo rm -rf /opt/nvim          # avoid nesting if a previous install exists
 sudo mv nvim-linux-x86_64 /opt/nvim
 rm nvim-linux-x86_64.tar.gz
 
@@ -35,11 +42,11 @@ git clone https://github.com/zsh-users/zsh-autosuggestions.git \
   ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
 echo "==> Symlinking dotfiles..."
-ln -sf ~/dotfiles/.zshrc ~/.zshrc
+ln -sfn "$DOTS/.zshrc" ~/.zshrc
 mkdir -p ~/.config
-ln -sf ~/dotfiles/nvim ~/.config/nvim
+ln -sfn "$DOTS/nvim" ~/.config/nvim
 mkdir -p ~/.local/bin
-ln -sf $(which fdfind) ~/.local/bin/fd
+ln -sf "$(which fdfind)" ~/.local/bin/fd
 
 echo "==> Installing LazyVim..."
 # nvim will bootstrap itself on first launch

@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# Select a region with slurp and save the screenshot to ~/Pictures.
+set -euo pipefail
+mkdir -p "$HOME/Pictures"
+geom=$(slurp) || exit 0  # user cancelled selection
+file="$HOME/Pictures/$(date +%Y-%m-%d_%H-%M-%S).png"
+grim -g "$geom" "$file"

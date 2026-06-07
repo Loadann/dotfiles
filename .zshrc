@@ -32,7 +32,7 @@ alias ll="ls -lah"
 alias gs="git status"
 alias gc="git commit"
 alias gp="git push"
-alias fd="fdfind"       # remove this if you created the symlink earlier
+command -v fdfind >/dev/null && alias fd="fdfind"   # Debian/WSL only; Arch ships it as `fd`
 
 # --- History ---
 HISTSIZE=10000

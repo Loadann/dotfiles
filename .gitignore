@@ -1,0 +1,11 @@
+# Backups created when symlinking configs into place
+*.bak.*
+
+# Secrets — never commit
+.env
+*.env
+*.key
+*.pem
+id_*
+*token*
+*secret*

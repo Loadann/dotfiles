@@ -1,0 +1,9 @@
+alvr-bin
+bs-manager-git
+gimgview
+heroic-games-launcher-bin
+lib32-gst-plugins-base-libs
+lib32-gstreamer
+libsoup
+proton-ge-custom-bin
+spotify
